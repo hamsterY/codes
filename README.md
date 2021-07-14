@@ -1,2 +1,10 @@
-# codes
-通用代码片段
+# 模块
+
+## Ajax请求封装
+
+调用
+
+```js
+const header = await hsAjax.get("element.header")
+```
+

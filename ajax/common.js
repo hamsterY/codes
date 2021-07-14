@@ -12,7 +12,7 @@ HsAjax.prototype = {
      * @param {JSON} header 请求头
      */
     get: async function(urlKey, reqData, header) {
-        await ajax("GET", urlKey, reqData, header);
+        return await ajax("GET", urlKey, reqData, header);
     },
     /**
      * ajax POST封装
@@ -21,7 +21,7 @@ HsAjax.prototype = {
      * @param {JSON} header 请求头
      */
     post: async function(urlKey, reqData, header) {
-        await ajax("POST", urlKey, reqData, header);
+        return await ajax("POST", urlKey, reqData, header);
     }
 }
 
@@ -79,7 +79,9 @@ function ajax(
                 paramArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(reqData[key]))
             })
             
-            return '?' + paramArr.join('&')
+            return paramArr.length !== 0
+                ? '?' + paramArr.join('&')
+                : ''
         })()
 
         return method === "GET"
